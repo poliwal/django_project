@@ -18,6 +18,13 @@ class PostListView(ListView):
 	ordering = ['-date_posted']
 	paginate_by = 5
 
+class GetAssignView(ListView):
+	model = Post
+	template_name = 'blog/getassign.html'	# <app>/<model>_<viewtype>.html
+	context_object_name = 'posts'
+
+
+
 class UserPostListView(ListView):
 	model = Post
 	template_name = 'blog/user_posts.html'	# <app>/<model>_<viewtype>.html
