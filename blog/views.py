@@ -18,12 +18,16 @@ class PostListView(ListView):
 	ordering = ['-date_posted']
 	paginate_by = 5
 
-class GetAssignView(ListView):
-	model = Post
-	template_name = 'blog/getassign.html'	# <app>/<model>_<viewtype>.html
-	context_object_name = 'posts'
+# class GetAssignView(ListView):
+# 	model = Post
+# 	template_name = 'blog/getassign.html'	# <app>/<model>_<viewtype>.html
+# 	context_object_name = 'posts'
 
-
+def urassignview(request):
+	assgn = {
+		'psts' : Post.objects.all().exclude(author = request.user)
+		}
+	return render(request, 'blog/getassign.html', assgn)
 
 class UserPostListView(ListView):
 	model = Post
