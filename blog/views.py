@@ -23,12 +23,16 @@ class PostListView(ListView):
 @login_required
 def ur_assign_view(request):
 	
-	rndm = list(Post.objects.all().exclude(author = request.user))
-	shuffle(rndm)
-	post = rndm[0:5]
-	# for x in post:
-	# 	a = Assignment(quest = x.content)
-	# 	a.save()
+	if Assignment.objects.filter(q_author = request.user).count()==0:
+		rndm = list(Post.objects.all().exclude(author = request.user))
+		shuffle(rndm)
+		post = rndm[0:5]
+		for x in post:
+			a = Assignment(quest = x.content, q_author = request.user)
+			a.save()
+	else:
+		post = Assignment.objects.filter(q_author = request.user)
+
 	assgn = {
 		'psts' : post
 		}

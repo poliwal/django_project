@@ -18,4 +18,4 @@ class Post(models.Model):
 class Assignment(models.Model):
 	#assign = models.ForeignKey(Post, on_delete=models.CASCADE)
 	quest = models.TextField(null = True)
-	#user = models.ForeignKey(User, on_delete=models.CASCADE)
+	q_author = models.ForeignKey(User, on_delete=models.CASCADE)

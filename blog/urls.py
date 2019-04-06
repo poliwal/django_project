@@ -11,7 +11,7 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(),name='post-create'),
     path('about/', blog_views.about,name='blog-about'),
     path('getassign/', blog_views.ur_assign_view,name='get-assign'),
-    path('generateassign/', blog_views.gen_assign,name='gen-assign'),
+    #path('generateassign/', blog_views.gen_assign,name='gen-assign'),
 
 
 ]
