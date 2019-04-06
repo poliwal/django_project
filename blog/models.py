@@ -14,3 +14,8 @@ class Post(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs={'pk':self.pk})
+
+class Assignment(models.Model):
+	#assign = models.ForeignKey(Post, on_delete=models.CASCADE)
+	quest = models.TextField(null = True)
+	#user = models.ForeignKey(User, on_delete=models.CASCADE)

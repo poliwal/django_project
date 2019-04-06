@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post,Assignment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from random import shuffle
@@ -21,16 +21,27 @@ class PostListView(ListView):
 	paginate_by = 5
 
 @login_required
-def urassignview(request):
+def ur_assign_view(request):
 	
 	rndm = list(Post.objects.all().exclude(author = request.user))
 	shuffle(rndm)
 	post = rndm[0:5]
+	# for x in post:
+	# 	a = Assignment(quest = x.content)
+	# 	a.save()
 	assgn = {
 		'psts' : post
 		}
 	return render(request, 'blog/getassign.html', assgn)
 
+# @login_required
+# def gen_assign(request):
+	
+# 	post = Assignment.objects.all()
+# 	assgn = {
+# 		'psts' : post
+# 		}
+# 	return render(request, 'blog/genassign.html', assgn)
 
 class UserPostListView(ListView):
 	model = Post
